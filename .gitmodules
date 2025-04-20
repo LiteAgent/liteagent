@@ -1,0 +1,21 @@
+[submodule "collector/agents/skyvern"]
+	path = collector/agents/skyvern
+	url = git@github.com:devinat1/skyvern.git
+[submodule "collector/agents/webarena"]
+	path = collector/agents/webarena
+	url = git@github.com:devinat1/webarena.git
+[submodule "vm/ubuntu22_04_m1"]
+	path = vm/ubuntu22_04_m1
+	url = git@github.com:devinat1/ubuntu22_vagrant.git
+[submodule "collector/agents/visualwebarena"]
+	path = collector/agents/visualwebarena
+	url = git@github.com:devinat1/visualwebarena.git
+[submodule "sites/react-testbed"]
+	path = sites/react-testbed
+	url = git@github.com:devinat1/agenttrickydps.git
+[submodule "sites/nextjs-testbed"]
+	path = sites/nextjs-testbed
+	url = git@github.com:devinat1/custom-sites.git
+[submodule "collector/agents/agente"]
+	path = collector/agents/agente
+	url = git@github.com:devinat1/agente.git

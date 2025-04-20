@@ -1,0 +1,8 @@
+results
+db
+__pycache__
+.env
+*.log
+random_sample.zip
+random_sample/
+merge_log.txt

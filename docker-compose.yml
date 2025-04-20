@@ -1,0 +1,134 @@
+services:
+  dobrowser:
+    build:
+      context: .
+      dockerfile: Dockerfile.dobrowser
+    image: dobrowser-runner
+    volumes:
+      - ./data/db:/app/data/db
+      - ./data/prompts:/app/data/prompts
+      - ./collector/logs:/app/collector/logs
+    working_dir: /app
+    command: ["bash", "-c", "./run.sh dobrowser --category dobrowser --virtual --timeout 180"]
+    env_file:
+      - collector/.env
+    environment:
+      - PYTHONUNBUFFERED=1
+    # deploy:
+    #   replicas: 2
+
+  browseruse:
+    build:
+      context: .
+      dockerfile: Dockerfile.browseruse
+    image: browseruse-runner
+    volumes:
+      - ./data/db:/app/data/db
+      - ./data/prompts:/app/data/prompts
+      - ./collector/logs:/app/collector/logs
+    working_dir: /app
+    command: ["bash", "-c", "./run.sh browseruse --category browseruse --virtual --timeout 180"]
+    env_file:
+      - collector/.env
+    environment:
+      - PYTHONUNBUFFERED=1
+    # deploy:
+    #   replicas: 2
+
+  skyvern:
+    build:
+      context: .
+      dockerfile: Dockerfile.skyvern
+    image: skyvern-runner
+    expose:
+      - 5432
+    volumes:
+      - ./data/db:/app/data/db
+      - ./data/prompts:/app/data/prompts
+      - ./collector/logs:/app/collector/logs
+    working_dir: /app
+    command: ["bash", "-c", "./collector/agents/skyvern/entrypoint.sh ../../../run.sh skyvern --category skyvern"]
+    environment:
+      - PYTHONUNBUFFERED=1
+    # deploy:
+    #   replicas: 2
+
+  webarena:
+    build:
+      context: .
+      dockerfile: Dockerfile.webarena
+    image: webarena-runner
+    volumes:
+      - ./data/db:/app/data/db
+      - ./data/prompts:/app/data/prompts
+      - ./collector/logs:/app/collector/logs
+    working_dir: /app
+    command: ["bash", "-c", "./run.sh webarena --category webarena --virtual"]
+    env_file:
+      - collector/.env
+    environment:
+      - PYTHONUNBUFFERED=1
+      - WEBARENA_CONDA_ENV=/opt/conda/envs/webarena
+    # deploy:
+    #   replicas: 2
+
+  visualwebarena:
+    build:
+      context: .
+      dockerfile: Dockerfile.visualwebarena
+    image: visualwebarena-runner
+    volumes:
+      - ./data/db:/app/data/db
+      - ./data/prompts:/app/data/prompts
+      - ./collector/logs:/app/collector/logs
+    working_dir: /app
+    command: ["bash", "-c", "./run.sh visualwebarena --category visualwebarena --virtual --timeout 1000"]
+    env_file:
+      - collector/.env
+    environment:
+      - PYTHONUNBUFFERED=1
+      - VISUALWEBARENA_CONDA_ENV=/opt/conda/envs/visualwebarena
+    # deploy:
+      # replicas: 2
+
+  agente:
+    build:
+      context: .
+      dockerfile: Dockerfile.agente
+    image: agente-runner
+    volumes:
+      - ./data/db:/app/data/db
+      - ./data/prompts:/app/data/prompts
+      - ./collector/logs:/app/collector/logs
+    working_dir: /app
+    command: ["bash", "-c", "./run.sh agente --category agente --virtual --timeout 180"]
+    env_file:
+      - collector/.env
+    environment:
+      - PYTHONUNBUFFERED=1
+    # deploy:
+    #   replicas: 2
+
+  # multion:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.multion
+  #   image: multion-runner
+  #   volumes:
+  #     - ./data/db:/app/data/db
+  #     - ./data/prompts:/app/data/prompts
+  #     - ./collector/logs:/app/collector/logs
+  #   working_dir: /app
+  #   command: ["bash", "-c", "cd collector && ./run.sh multion --category missing_prelim_runs_single_mar --virtual --timeout 300"]
+  #   env_file:
+  #     - collector/.env
+  #   environment:
+  #     - PYTHONUNBUFFERED=1
+  #   deploy:
+  #     replicas: 2
+
+volumes:
+  pgadmin-data:
+
+networks:
+  shared-network:

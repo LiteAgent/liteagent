@@ -1,0 +1,10 @@
+.env
+*.pyc
+__pycache__
+*.pyo
+*.pyd
+venv/
+node_modules/
+chrome_user_data*
+*.log
+.vscode/settings.json

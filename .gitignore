@@ -1,0 +1,15 @@
+.vscode/*
+!.vscode/launch.json
+*.tfstate
+*_cache
+*.tfstate.*
+crash.log
+*.tfvars
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraform/
+terraform.tfstate.backup
+.terraform.lock.hcl
+logs

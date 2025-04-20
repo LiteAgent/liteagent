@@ -1,0 +1,240 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: agent runner",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "collector.main",
+      "console": "integratedTerminal",
+      "args": [
+        "agente",
+        "--site",
+        "agenttrickydps.vercel.app/shop",
+        "--task",
+        "Search for movies, and buy the cheapest one.",
+        "--site-category",
+        "byhand",
+        "--darkpattern-category",
+        "", 
+        /* TODO: Ensure empty dark pattern category is handled properly */
+        "--timeout",
+        "180"
+      ]
+    },
+    {
+      "name": "Python: create_playwright_from_db",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "evaluation.scripts.create_playwright_from_db",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Python: morph_multion_reasoning_to_scratchpad",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "evaluation.scripts.morph_multion_reasoning_to_scratchpad",
+      "console": "integratedTerminal",
+      "args": ["${workspaceFolder}/data/db/multion"]
+    },
+    {
+      "name": "Python: filter_actions",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "evaluation.human_annotation.filter_actions",
+      "console": "integratedTerminal",
+      "args": ["${workspaceFolder}/data/human/benign_batch"]
+    },
+    {
+      "name": "Python: create_assertions",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "evaluation.human_annotation.create_assertions",
+      "console": "integratedTerminal",
+      "args": ["${workspaceFolder}/data/human/benign_batch"]
+    },
+    {
+      "name": "Python: scratchpad_creator",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "evaluation.human_annotation.scratchpad_creator",
+      "console": "integratedTerminal",
+      "args": ["${workspaceFolder}/data/human/benign_batch"]
+    },
+    {
+      "name": "Python: check_videos",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "evaluation.human_annotation.check_videos",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Python: check_db_for_correctness",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "evaluation.checkers.check_db_for_correctness",
+      "console": "integratedTerminal",
+      "args": [
+        "${workspaceFolder}/data/human/benign_batch",
+        "${workspaceFolder}/data/db",
+        "--verbose"
+      ]
+    },
+    {
+      "name": "Python: check_assertions_for_correctness",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "evaluation.checkers.check_assertions_for_correctness",
+      "console": "integratedTerminal",
+      "args": [
+        "${workspaceFolder}/data/human/benign_batch",
+        "${workspaceFolder}/data/db",
+        "--verbose"
+      ]
+    },
+    {
+      "name": "Python: dp_checker",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "evaluation.checkers.dp_checker",
+      "console": "integratedTerminal",
+      "args": [
+        "${workspaceFolder}/data/human/fell_for_dp",
+        "${workspaceFolder}/data/human/did_not_fall_for_dp",
+        "${workspaceFolder}/data/db",
+        "--verbose"
+      ]
+    },
+    {
+      "name": "Python: main",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "evaluation.checkers",
+      "console": "integratedTerminal",
+      "args": [
+        "${workspaceFolder}/data/human/benign_batch",
+        "${workspaceFolder}/data/human/fell_for_dp",
+        "${workspaceFolder}/data/human/did_not_fall_for_dp",
+        "${workspaceFolder}/data/db",
+        "${workspaceFolder}/numbers/data-analyzer/numbers.csv",
+        "--verbose"
+      ]
+    },
+    {
+      "name": "Python: check_scratchpad_for_correctness",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "evaluation.checkers.check_scratchpad_for_correctness",
+      "console": "integratedTerminal",
+      "args": [
+        "${workspaceFolder}/data/human/benign_batch",
+        "${workspaceFolder}/data/db",
+        "--verbose"
+      ]
+    },
+    {
+      "name": "Python: create_scratchpad_based_on_db",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "evaluation.scripts.create_scratchpad_based_on_db",
+      "console": "integratedTerminal",
+      "args": ["${workspaceFolder}/data/db"]
+    },
+    {
+      "name": "Python: merge_assertions",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "evaluation.scripts.merge_assertions",
+      "console": "integratedTerminal",
+      "args": [
+        "${workspaceFolder}/data/human/benign_batch",
+        "${workspaceFolder}/data/db"
+      ]
+    },
+    {
+      "name": "Python: custom_checker",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "evaluation.checkers.custom_checker",
+      "console": "integratedTerminal",
+      "args": [
+        "${workspaceFolder}/data/db",
+      ]
+    },
+    {
+      "name": "Python: transform_benign_data.py",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "evaluation.data_transforms.transform_benign_data",
+      "console": "integratedTerminal",
+    },
+    {
+      "name": "Python: transform_custom_data.py",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "evaluation.data_transforms.transform_custom_data",
+      "console": "integratedTerminal",
+    },
+    {
+      "name": "Python: transform_dp_data.py",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "evaluation.data_transforms.transform_dp_data",
+      "console": "integratedTerminal",
+    },
+    {
+      "name": "Python: transform_task_data.py",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "evaluation.data_transforms.transform_task_data",
+      "console": "integratedTerminal",
+    },
+    {
+      "name": "Python: transform_task_dp_comparison_data.py",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "evaluation.data_transforms.transform_task_dp_comparison_data",
+      "console": "integratedTerminal",
+    }
+  ],
+  "compounds": [
+    {
+      "name": "All Checkers",
+      "configurations": [
+        "Python: check_db_for_correctness",
+        "Python: check_assertions_for_correctness",
+        "Python: dp_checker",
+        "Python: main",
+        "Python: check_scratchpad_for_correctness"
+      ]
+    },
+    {
+      "name": "Human Annotation",
+      "configurations": [
+        "Python: filter_actions",
+        "Python: create_assertions",
+        "Python: scratchpad_creator",
+        "Python: check_videos"
+      ]
+    },
+    {
+      "name": "Playwright & Scratchpad Creation",
+      "configurations": [
+        "Python: create_playwright_from_db",
+        "Python: morph_multion_reasoning_to_scratchpad",
+        "Python: create_scratchpad_based_on_db",
+        "Python: merge_assertions"
+      ]
+    },
+    {
+      "name": "Transformers",
+      "configurations": [
+        "Python: transform_benign_data.py",
+        "Python: transform_custom_data.py",
+        "Python: transform_dp_data.py",
+        "Python: transform_task_data.py",
+        "Python: transform_task_dp_comparison_data.py"
+      ]
+    }
+  ]
+}

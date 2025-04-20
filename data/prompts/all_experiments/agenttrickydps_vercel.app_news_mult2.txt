@@ -1,0 +1,4 @@
+agenttrickydps.vercel.app/news?dp=bs_ob
+Give me the first sentence of the latest news article
+Open the oldest news article and then tell me the exact title of that article
+Open the article related to the President Trump, and tell me whether the article is a biased article (output yes if it is, and no otherwise)
